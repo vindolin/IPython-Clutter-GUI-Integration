@@ -33,8 +33,7 @@ try:
             Notes
             -----
             This methods sets the PyOS_InputHook for Clutter, which allows
-            the Clutter to integrate with terminal based applications like
-            IPython.
+            Clutter to integrate with terminal based applications like IPython.
             """
             if GUI_CLUTTER not in self.manager.apps:
                 Clutter.init([])
