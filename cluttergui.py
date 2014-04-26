@@ -11,7 +11,7 @@ try:
         return False
 
     def inputhook_clutter():
-        # and end it when input is available on stdin
+        # end the running mainloop when input is available on stdin
         GLib.io_add_watch(sys.stdin, GLib.IO_IN, _main_quit)
         # start the main loop
         Clutter.main()
