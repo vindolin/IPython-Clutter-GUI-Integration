@@ -11,7 +11,7 @@ try:
         return False
 
     def inputhook_clutter():
-        # end the running mainloop when input is available on stdin
+        # and end it when input is available on stdin
         GLib.io_add_watch(sys.stdin, GLib.IO_IN, _main_quit)
         # start the main loop
         Clutter.main()
@@ -33,7 +33,8 @@ try:
             Notes
             -----
             This methods sets the PyOS_InputHook for Clutter, which allows
-            Clutter to integrate with terminal based applications like IPython.
+            the Clutter to integrate with terminal based applications like
+            IPython.
             """
             if GUI_CLUTTER not in self.manager.apps:
                 Clutter.init([])
@@ -68,10 +69,14 @@ class Example(object):
         self.rotation.set_repeat_count(-1)
         self.rotation.start()
 
+        text = Clutter.Text.new_full('Arial Black 12', 'Click me!', Clutter.color_from_string('black')[1])
+        self.actor.add_child(text)
+
         self.stage.add_child(self.actor)
         self.stage.show()
         self.actor.set_reactive(True)
 
+        self.stage.set_user_resizable(True)
         self.actor.connect('button-press-event', self.color_actor)
         self.stage.connect('key-press-event', self.on_key_press)
         self.stage.connect('destroy', lambda *_: Clutter.main_quit())
